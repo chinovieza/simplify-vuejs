@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="hello">
+        <h1>Onepiece App Component</h1>
+        <div id="my-data">ชื่อ {{ name }} อายุ {{ age }}</div>
+        <div id="my-data2">{{ getFullName() }}</div>
+    </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: "App",
+    data() {
+        return {
+            name: "Monkey D. Luffy",
+            age: 19,
+            lastname: "monkey d.",
+            firstname: "LUFFY"
+        }
+    },
+    methods: {
+        getFirstName() {
+            return (
+                this.firstname.charAt(0).toUpperCase() + this.firstname.slice(1).toLowerCase()
+            )
+        },
+        getLastName() {
+            return (
+                this.lastname.charAt(0).toUpperCase() + this.lastname.slice(1).toLowerCase()
+            )
+        },
+        getFullName() {
+            return `${this.getLastName()} ${this.getFirstName()}`
+        }
+    }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.hello {
+    text-align: center;
+}
+#my-data {
+    color: gray;
+    font-size: 1.5em;
+}
+#my-data2 {
+    color: brown;
+    font-size: 1.5em;
 }
 </style>
