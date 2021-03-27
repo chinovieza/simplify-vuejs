@@ -38,6 +38,74 @@
             <div class="alert-info">แสดงข้อมูลทั่วไปกับผู้ใช้</div>
             <div class="alert-danger">ข้อความเตือนภัยร้ายแรง</div>
         </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col border">1 จาก 3 collumn</div>
+                <div class="col border">2 จาก 3 collumn</div>
+                <div class="col border">3 จาก 3 collumn</div>
+            </div>
+            <div class="row">
+                <div class="col border">1 จาก 4 collumn</div>
+                <div class="col border">2 จาก 4 collumn</div>
+                <div class="col border">3 จาก 4 collumn</div>
+                <div class="col border">4 จาก 4 collumn</div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col border">1 จาก 3 collumn กว้างอัตโนมัติ</div>
+                <div class="col border">2 จาก 3 collumn กว้างอัตโนมัติ</div>
+                <div class="col border">3 จาก 3 collumn กว้างอัตโนมัติ</div>
+            </div>
+            <div class="row">
+                <div class="col border">1 จาก 3 collumn กว้างอัตโนมัติ</div>
+                <div class="col col-6 border">2 จาก 3 collumn กว้าง 6/12</div>
+                <div class="col col-2 border">3 จาก 3 collumn กว้าง 2/12</div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-sm-4 border">col-sm-4 1 จาก 3 collumn</div>
+                <div class="col-sm-4 border">col-sm-4 2 จาก 3 collumn</div>
+                <div class="col-sm-4 border">col-sm-4 3 จาก 3 collumn</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 border">col-sm-3 1 จาก 4 collumn</div>
+                <div class="col-sm-3 border">col-sm-3 2 จาก 4 collumn</div>
+                <div class="col-sm-3 border">col-sm-3 3 จาก 4 collumn</div>
+                <div class="col-sm-3 border">col-sm-3 4 จาก 4 collumn</div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row mt-4">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img class="card-img-top" src="https://loremflickr.com/400/200" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-6 col-sm-3 mt-2">
+                    <img class="img-fluid" src="https://loremflickr.com/400/200">
+                </div>
+                <div class="col-6 col-sm-3 mt-2">
+                    <img class="img-fluid" src="https://loremflickr.com/400/200">
+                </div>
+                <div class="col-6 col-sm-3 mt-2">
+                    <img class="img-fluid" src="https://loremflickr.com/400/200">
+                </div>
+                <div class="col-6 col-sm-3 mt-2">
+                    <img class="img-fluid" src="https://loremflickr.com/400/200">
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
