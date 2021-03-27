@@ -106,6 +106,147 @@
                 </div>
             </div>
         </div>
+        <div class="container mt-4">
+            <div class="row d-block">
+                <div class="alert-success">ข้อความนี้แสดงในทุกอุปกรณ์</div>
+            </div>
+            <div class="row d-none d-md-block">
+                <div class="alert-danger">ข้อความนี้แสดงเฉพาะบนคอมและแท็บเล็ต (md upper)</div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="selectName">เลือกมือถือ</label>
+                    <select class="form-control" id="selectName">
+                        <option>iPhone</option>
+                        <option>Android</option>
+                        <option>Blackberry</option>
+                        <option>Windows Phone</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="myFile">เลือกไฟล์</label>
+                    <input type="file" class="form-control-file" id="myFile">
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="myRadio" class="form-check-input" id="myRadio1">
+                    <label class="form-check-label" for="myRadio1">ชาย</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="myRadio" class="form-check-input" id="myRadio2">
+                    <label class="form-check-label" for="myRadio2">หญิง</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="myCheck1" value="ok">
+                    <label class="form-check-label" for="myCheck1">ยอมรับเงื่อนไข</label>
+                </div>
+                <button type="submit" class="btn btn-primary">OK</button>
+            </form>
+        </div>
+        <div class="container mt-4 text-center">
+            <table class="table table-striped mb-3">
+                <thead>
+                    <tr>
+                        <td>ลำดับ</td>
+                        <td>รายการ</td>
+                        <td>ราคา</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Final Cut Pro</td>
+                        <td>319</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>HTML + Java Script</td>
+                        <td>259</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="table-info">
+                        <td>ลำดับ</td>
+                        <td>รายการ</td>
+                        <td>ราคา</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-danger">
+                        <td>1</td>
+                        <td>iPhone</td>
+                        <td>319</td>
+                    </tr>
+                    <tr class="table-warning">
+                        <td>2</td>
+                        <td>Android</td>
+                        <td>259</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container mt-4">
+            <div class="row mt-3">
+                <div class="dropdown col-4 mx-auto">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">เลือกผลไม้</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">ส้ม</a>
+                        <a class="dropdown-item" href="#">กล้วย</a>
+                        <a class="dropdown-item" href="#">มะพร้าว</a>
+                        <a class="dropdown-item" href="#">แตงกวา</a>
+                        <a class="dropdown-item" href="#">ผักกาด</a>
+                        <a class="dropdown-item" href="#">ส้มโอ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row mt-3">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#targetModal"
+                    >เปิดหน้าต่างป๊อปอัพ</button>
+                <div
+                    class="modal fade"
+                    id="targetModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">ชื่อโมดอล</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                เนื้อหาที่อยู่ในป๊อปอัพ
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
