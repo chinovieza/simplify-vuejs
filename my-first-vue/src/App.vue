@@ -1,17 +1,14 @@
 <template>
-    <div id="main-content">
-        <Student />
+    <div class="container">
+        <Customer />
     </div>
 </template>
 <script>
-import Student from "./components/Student.vue";
+import Customer from './components/Customer.vue'
 export default {
     name: "app",
     components: {
-        Student
+        Customer
     }
-};
+}
 </script>
-<style>
-
-</style>
