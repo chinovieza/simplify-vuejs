@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-sm-12">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <router-link class="nav-link" to="/">Home</router-link>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/books">All Books</a>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/addebook">Add New</router-link>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About a</a>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/about">About to</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{name: `AboutByName`}">About :to</router-link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </div>
-    <router-view/>
+    <div class="row">
+      <div class="col-sm-12">
+        <router-view />
+      </div>
+    </div>
   </div>
 </template>
-
+<script>
+export default {
+  name: "app"
+}
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+a.router-link-exact-active {
+  background-color: lightblue;
 }
 </style>
