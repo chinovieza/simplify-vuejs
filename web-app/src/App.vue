@@ -20,19 +20,13 @@
                 <router-link class="nav-link" to="/">Home</router-link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/books">All Books</a>
+                <router-link class="nav-link" to="/books">All Books</router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" to="/addebook">Add New</router-link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/about">About a</a>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" to="/about">About to</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" :to="{name: `AboutByName`}">About :to</router-link>
+                <router-link class="nav-link" :to="{name: `AboutByName`}">About</router-link>
               </li>
             </ul>
           </div>
@@ -41,6 +35,10 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <button class="btn btn-sm btn-danger m-2" @click="goBack">Back</button>
+        <button class="btn btn-sm btn-warning m-2" @click="goHome">Home</button>
+        <button class="btn btn-sm btn-primary m-2" @click="goAbout">About</button>
+        <button class="btn btn-sm btn-secondary m-2" @click="goNext">Next</button>
         <router-view />
       </div>
     </div>
@@ -48,7 +46,21 @@
 </template>
 <script>
 export default {
-  name: "app"
+  name: "app",
+  methods: {
+    goHome() {
+      this.$router.push({name:"home"})
+    },
+    goAbout() {
+      this.$router.push("/about")
+    },
+    goBack() {
+      this.$router.go(-1)
+    },
+    goNext() {
+      this.$router.go(1)
+    }
+  }
 }
 </script>
 <style>

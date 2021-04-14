@@ -3,13 +3,15 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Books from '../components/Books.vue'
 import AddEbook from '@/components/AddEbook.vue'
+import Ebook from '../components/Ebook.vue'
+import EditEbook from '@/components/EditEbook.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
@@ -21,6 +23,16 @@ const routes = [
     path: '/addebook',
     name: 'addebookname',
     component: AddEbook
+  },
+  {
+    path: '/ebook',
+    name: 'ebookname',
+    component: Ebook
+  },
+  {
+    path: '/editebook/:data',
+    name: 'editebookname',
+    component: EditEbook
   },
   {
     path: '/about',
