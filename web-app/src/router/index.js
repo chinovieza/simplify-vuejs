@@ -5,6 +5,7 @@ import Books from '../components/Books.vue'
 import AddEbook from '@/components/AddEbook.vue'
 import Ebook from '../components/Ebook.vue'
 import EditEbook from '@/components/EditEbook.vue'
+import Profile from '../components/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,19 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (to.params.id && to.params.hash) {
+        next()
+      } else {
+        next({name: "home"})
+      }
+    }
   }
 ]
 

@@ -39,6 +39,8 @@
         <button class="btn btn-sm btn-warning m-2" @click="goHome">Home</button>
         <button class="btn btn-sm btn-primary m-2" @click="goAbout">About</button>
         <button class="btn btn-sm btn-secondary m-2" @click="goNext">Next</button>
+        <button class="btn btn-sm btn-info m-2" @click="onNoId">Profile no ID</button>
+        <button class="btn btn-sm btn-dark m-2" @click="onWithId">Profile with ID</button>
         <router-view />
       </div>
     </div>
@@ -59,6 +61,12 @@ export default {
     },
     goNext() {
       this.$router.go(1)
+    },
+    onNoId() {
+      this.$router.push({ name: "profile" })
+    },
+    onWithId() {
+      this.$router.push({ name: "profile", params: { id: "1", hash: "abc123" }})
     }
   }
 }
