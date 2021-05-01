@@ -1,125 +1,92 @@
 <template>
     <div>
-        <ul>
-            <li v-for="(product, index) in productLists" :key="index">
-                # {{ product.pid }} : {{ product.name }} : ${{ product.price }}
-            </li>
-        </ul>
-        <hr />
-        <div v-if="loading">loading ...</div>
-        <button v-else-if="currentCursor" @click="onMoreProducts">More Products ...</button>
-        <div v-else-if="productLists.length > 0">No more product</div>
+        <Form @add="addUserHandler" />
+        <div v-if="loading">Loading...</div>
+        <div v-else-if="userLists.length > 0">
+            <Users :lists="userLists" @edit="editHandler" @delete="deleteHandler" />
+        </div>
     </div>
 </template>
 <script>
-import firestore from './database/firebase';
+
+import firestore from "./database/firebase";
+import Form from "./Form";
+import Users from "./Users";
+
+const ref = firestore.collection("users");
 
 export default {
     name: "App",
+    components: {
+        Form,
+        Users
+    },
     data() {
         return {
-            productLists: [],
-            currentCursor: null,
-            loading: false
+            userLists: [],
+            loading: false,
+            unsubscribe: null
         };
     },
-    created() {
-
-        const firstPageRef = firestore.collection("products").orderBy("pid", "asc").limit(3);
-
-        firstPageRef.get().then(querySnapshot => {
-            let tempLists = [];
-            querySnapshot.docs.forEach(doc => {
-                if (doc.exists) {
-                    const currentProduct = {
-                        pid: doc.data().pid,
-                        name: doc.data().name,
-                        price: doc.data().price
-                    };
-                    tempLists = [...tempLists, currentProduct];
-                }
-            });
-
-            this.productLists = tempLists;
-            const currentLength = querySnapshot.docs.length;
-            const currentCursorFromFirstPage = querySnapshot.docs[currentLength - 1];
-            this.currentCursor = currentCursorFromFirstPage;
-        });
-    
-    },
     methods: {
-        onMoreProducts() {
-            
-            const nextPageRef = firestore.collection("products").orderBy("pid", "asc").limit(3);
-
-            nextPageRef.get().then(querySnapshot => {
-                this.loading = true;
-                
-                const currentLength = querySnapshot.docs.length;
-
-                if (!this.currentCursor) {
-                    return;
-                }
-                
-                const query = nextPageRef.startAfter(this.currentCursor);
-                query.get().then(querySnapshot => {
-                    let tempNewArray = [];
-                    querySnapshot.forEach(doc => {
-                        if (doc.exists) {
-                            tempNewArray = [
-                                ...tempNewArray,
-                                {
-                                    pid: doc.data().pid,
-                                    name: doc.data().name,
-                                    price: doc.data().price
-                                }
-                            ];
-                        }
+        fetchData() {
+            const query = ref.orderBy("age", "desc");
+            this.loading = true;
+            this.unsubscribe = query.onSnapshot(
+                snapshot => {
+                    let tempDataArray = [];
+                    snapshot.forEach(doc => {
+                        tempDataArray = [
+                            ...tempDataArray, {
+                                id: doc.id,
+                                userName: doc.data().userName,
+                                age: doc.data().age
+                            }
+                        ];
                     });
-
-                    this.productLists = [...this.productLists, ...tempNewArray];
-                    const currentCursorForNextPage = querySnapshot.docs[currentLength - 1];
-                    this.currentCursor = currentCursorForNextPage;
+                    this.userLists = tempDataArray;
                     this.loading = false;
-                });
+                },
+                err => {
+                    this.loading = false;
+                    console.log(err);
+                }
+            );
+        },
+        addUserHandler(obj) {
+            ref.add(obj).then(() => {
+                console.log("add successfully");
             });
-
+        },
+        deleteHandler(id) {
+            ref
+            .doc(id)
+            .delete()
+            .then(() => {
+                console.log("deleted");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        },
+        editHandler(id, obj) {
+            ref
+            .doc(id)
+            .set(obj)
+            .then(() => {
+                console.log("updated");
+            })
+            .catch(err => {
+                console.log(err);
+            });
         }
-    }
-    /*
+    },
     created() {
-        const data = [
-            { pid: "01", name:"bag#1", price: 270 },
-            { pid: "02", name:"shirt#1", price: 120 },
-            { pid: "03", name:"hat#1", price: 90 },
-            { pid: "04", name:"shirt#2", price: 550 },
-            { pid: "05", name:"hat#2", price: 110 },
-            { pid: "06", name:"hat#3", price: 100 },
-            { pid: "07", name:"bag#2", price: 300 },
-            { pid: "08", name:"shirt#3", price: 490 }
-        ];
-
-        const productRef = firestore.collection("products");
-
-        data.forEach(product => {
-            productRef
-                .doc(product.pid)
-                .set({
-                    pid: product.pid,
-                    name: product.name,
-                    price: product.price
-                })
-                .then(() => {
-                    console.log({
-                        pid: product.pid,
-                        name: product.name,
-                        price: product.price
-                    });
-                });
-        });
+        this.fetchData();
+    },
+    beforeDestroy() {
+        this.unsubscribe();
     }
-    */
-   
 };
 </script>
 <style>
