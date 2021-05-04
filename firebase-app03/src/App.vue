@@ -81,7 +81,7 @@ export default {
     this.authUnsubscribe = auth.onAuthStateChanged(
       user => {
         if (user) {
-          this.setUserData(user.id)
+          this.setUserData(user.uid)
         } else {
           this.user = null;
         }
