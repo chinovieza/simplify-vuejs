@@ -24,8 +24,22 @@
           >Upload</button>
       </div>
     </form>
+    <div class="row mt-4" v-if="progressStatus">
+      <div class="col-sm-6 mx-auto">
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-striped bg-info"
+            role="progressbar"
+            :style="{ width: progressValue + '%'}"
+            :aria-valuenow="progressValue"
+            :aria-valuemin="0"
+            :aria-valuemax="100"
+            ></div>
+        </div>
+      </div>
+    </div>
     <div class="text-center mt-4" v-if="link">
-      <hr/>
+      <hr />
       <a class="text-secondary" :href="link">Click File {{file.name}}</a>
     </div>
   </div>
@@ -42,7 +56,9 @@ export default {
   data() {
     return {
       file: "",
-      link: ""
+      link: "",
+      progressValue: 1,
+      progressStatus: false
     };
   },
   methods: {
@@ -50,12 +66,23 @@ export default {
       if (this.file) {
         const fileName = this.file.name;
         const targetRef = subBucketRef.child(fileName);
-        targetRef.put(this.file).then(response => {
-          console.log(response);
-          response.ref.getDownloadURL().then(photoURL => {
-            this.link = photoURL;
-          });
-        });
+        const uploadTask = targetRef.put(this.file);
+        this.progressStatus = true;
+        uploadTask.on(
+          "state_changed",
+          snapshot => {
+            this.progressValue = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          },
+          error => {
+            console.log(error);
+          },
+          () => {
+            this.progressStatus = false;
+            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+              this.link = downloadURL;
+            });
+          }
+        );
       } else {
         console.log("no file upload!!");
       }
