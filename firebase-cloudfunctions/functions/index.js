@@ -7,3 +7,7 @@ const functions = require("firebase-functions");
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+exports.helloWorld = functions.https.onRequest((request, response) => {
+    response.status(200).send("Hello Monkey D. Luffy World !!!");
+});
